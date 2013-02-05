@@ -33,6 +33,16 @@
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>AllEnquetesServlet</servlet-name>
+    <servlet-class>servlets.AllEnquetesServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AllEnquetesServlet</servlet-name>
+    <url-pattern>/all</url-pattern>
+  </servlet-mapping>
+
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Wildcard means whole app requires authentication</web-resource-name>
