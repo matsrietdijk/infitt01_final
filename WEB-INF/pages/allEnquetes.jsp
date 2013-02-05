@@ -11,8 +11,8 @@
 <div class="container">
 <div class="row">
 <div class="one third padded align-center">
-<h1 class="responsive" data-scale="3.825" data-min="20" data-max="170" style="font-size: 99px;">Homepage</h1>
-<h3 class="responsive" data-scale="13.6" data-min="15" data-max="50" style="font-size: 27px;"><a href="/final/all">All enquetes</a></h3>
+<h1 class="responsive" data-scale="3.825" data-min="20" data-max="170" style="font-size: 99px;">Enquetes</h1>
+<h3 class="responsive" data-scale="13.6" data-min="15" data-max="50" style="font-size: 27px;"><a href="/final/home">Back to home</a></h3>
 <div class="row">
 <div class="three small-tablet sevenths gap-top pad-right no-padding-mobile">
 <a class="block button" href="#" target="_blank">INFITT01 <i class="icon-twitter"></i></a>
@@ -35,7 +35,7 @@
 <h3>Favorite enquetes:</h3>
 <c:forEach items="${requestScope.favorites}" var="enquete">
 <div class="one third padded">
-<a href="./sass-compass">
+<a href="/final/removefavo?id=${enquete.id}">
 <div class="large circle"><div class="blue-3 cell"><i class="icon-plus-sign-alt"></i></div></div>
 <h1 class="align-center"><c:out value="${enquete.name}"/></h1>
 </a>
@@ -48,7 +48,7 @@
 <h3>All enquetes:</h3>
 <c:forEach items="${requestScope.enquetes}" var="enquete">
 <div class="one third padded">
-<a href="./sass-compass">
+<a href="/final/addfavo?id=${enquete.id}">
 <div class="large circle"><div class="blue-3 cell"><i class="icon-plus-sign-alt"></i></div></div>
 <h1 class="align-center"><c:out value="${enquete.name}"/></h1>
 </a>
