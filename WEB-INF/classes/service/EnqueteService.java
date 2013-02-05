@@ -137,4 +137,51 @@ public class EnqueteService {
 		}
 		return favorites;
 	}
+
+	public boolean addFavoriteByUser(String username, int id)
+	{
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet srs = stmt.executeQuery("SELECT * FROM favorite WHERE username = '" + username + "' AND enquete_id = " + id);
+			if (srs.next()) {
+				srs.close();
+			} else {
+				srs.close();
+				stmt.executeUpdate("INSERT INTO favorite(username, enquete_id) VALUES('" + username + "'," + id + ")");
+			}
+			stmt.close();
+			conn.close();
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+			return false;
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+			return false;
+		}
+		return true;
+	}
+
+	public boolean removeFavoriteByUser(String username, int id)
+	{
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement stmt = conn.createStatement();
+
+			stmt.executeUpdate("DELETE FROM favorite WHERE username = '" + username + "' AND enquete_id = " + id + "");
+			stmt.close();
+			conn.close();
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+			return false;
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+			return false;
+		}
+		return true;
+	}
 }
