@@ -25,8 +25,8 @@ public class HomeServlet extends HttpServlet
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 	throws ServletException, IOException
 	{
-		List<Enquete> enquetes = this.enqueteService.getEnquetes();
-		req.setAttribute("enquetes", enquetes);
+		List<Enquete> favorites = this.enqueteService.getFavoritesByUser(req.getUserPrincipal().getName());
+		req.setAttribute("favorites", favorites);
 		getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
 	}
 

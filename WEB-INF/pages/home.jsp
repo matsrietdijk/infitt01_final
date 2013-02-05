@@ -5,8 +5,9 @@
 	<body>
 		<h1>Homepage</h1>
 		<div>
-			<c:forEach items="${requestScope.enquetes}" var="enquete">
-				<c:out value="${enquete.name}"/><br/>
+			<h3>Favorite enquetes:</h3>
+			<c:forEach items="${requestScope.favorites}" var="enquete">
+				<p><c:out value="${enquete.name}"/></p>
 			</c:forEach> 
 		</div>
 	</body>

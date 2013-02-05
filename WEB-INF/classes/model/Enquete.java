@@ -46,6 +46,10 @@ public class Enquete {
 		this.questions.add(question);
 		return this;
 	}
+	public List<Question> getQuestions()
+	{
+		return this.questions;
+	}
 	public Question getQuestion(int index)
 	{
 		return this.questions.get(index);
