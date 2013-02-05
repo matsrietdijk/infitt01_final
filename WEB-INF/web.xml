@@ -53,6 +53,26 @@
     <url-pattern>/enquete</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>RemoveFavoServlet</servlet-name>
+    <servlet-class>servlets.RemoveFavoServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RemoveFavoServlet</servlet-name>
+    <url-pattern>/removefavo</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AddFavoServlet</servlet-name>
+    <servlet-class>servlets.AddFavoServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AddFavoServlet</servlet-name>
+    <url-pattern>/addfavo</url-pattern>
+  </servlet-mapping>
+
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Wildcard means whole app requires authentication</web-resource-name>
