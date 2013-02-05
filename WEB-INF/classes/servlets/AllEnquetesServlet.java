@@ -25,9 +25,10 @@ public class AllEnquetesServlet extends HttpServlet
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 	throws ServletException, IOException
 	{
-		List<Enquete> enquetes = this.enqueteService.getAllEnquetes();
+		String user = req.getUserPrincipal().getName();
+		List<Enquete> enquetes = this.enqueteService.getAllEnquetesExcludingFinished(user);
 		req.setAttribute("enquetes", enquetes);
-		List<Enquete> favorites = this.enqueteService.getFavoritesByUser(req.getUserPrincipal().getName());
+		List<Enquete> favorites = this.enqueteService.getFavoritesByUser(user);
 		req.setAttribute("favorites", favorites);
 		getServletContext().getRequestDispatcher("/WEB-INF/pages/allEnquetes.jsp").forward(req, resp);
 	}

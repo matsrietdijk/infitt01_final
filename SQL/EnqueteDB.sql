@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 05, 2013 at 05:47 PM
+-- Generation Time: Feb 05, 2013 at 09:38 PM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.6-1ubuntu1.1
 
@@ -19,6 +19,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `EnqueteDB`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `choice`
+--
+
+CREATE TABLE IF NOT EXISTS `choice` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question_id` int(11) NOT NULL,
+  `choice` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `choice`
+--
+
+INSERT INTO `choice` (`id`, `question_id`, `choice`) VALUES
+(1, 1, 'Dit is het eerste antwoord'),
+(2, 1, '2de antwoord van de eerste vraag');
 
 -- --------------------------------------------------------
 
@@ -42,6 +63,39 @@ INSERT INTO `enquete` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `favorite`
+--
+
+CREATE TABLE IF NOT EXISTS `favorite` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `enquete_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `favorite`
+--
+
+INSERT INTO `favorite` (`id`, `username`, `enquete_id`) VALUES
+(1, 'admin', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `finished`
+--
+
+CREATE TABLE IF NOT EXISTS `finished` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `enquete_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `question`
 --
 
@@ -50,7 +104,6 @@ CREATE TABLE IF NOT EXISTS `question` (
   `type` int(1) NOT NULL,
   `enquete_id` int(11) NOT NULL,
   `question` varchar(255) NOT NULL,
-  `answers` longtext NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
@@ -58,9 +111,9 @@ CREATE TABLE IF NOT EXISTS `question` (
 -- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`id`, `type`, `enquete_id`, `question`, `answers`) VALUES
-(1, 0, 1, 'Wat zal de eerste vraag zijn?', '{''dit'',''iets anders'',''iets heel anders'',''wat maakt het uit''}'),
-(2, 1, 1, 'Werkt het?', '-');
+INSERT INTO `question` (`id`, `type`, `enquete_id`, `question`) VALUES
+(1, 0, 1, 'Wat zal de eerste vraag zijn?'),
+(2, 1, 1, 'Werkt het?');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

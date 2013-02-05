@@ -45,6 +45,32 @@ public class EnqueteService {
 		return this.enquetes;
 	}
 
+	public List<Enquete> getAllEnquetesExcludingFinished(String username)
+	{
+		List<Enquete> enquetes = new ArrayList<Enquete>();
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement estmt = conn.createStatement();
+
+			ResultSet ers = estmt.executeQuery("SELECT id, name FROM enquete WHERE enquete.id NOT IN(SELECT enquete_id FROM finished WHERE username = '" + username + "')");
+			while (ers.next()) {
+				Enquete enquete = new Enquete(ers.getInt(1), ers.getString(2));
+				enquetes.add(enquete);
+			}
+			ers.close();
+			estmt.close();
+			conn.close();
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+		}
+		return enquetes;
+	}
+
+
 	public Enquete getEnqueteById(int id)
 	{
 		Enquete enquete = null;
@@ -97,7 +123,7 @@ public class EnqueteService {
 			Connection conn = ds.getConnection();
 			Statement stmt = conn.createStatement();
 
-			ResultSet rs = stmt.executeQuery("SELECT enquete.id, enquete.name FROM favorite INNER JOIN enquete ON favorite.enquete_id = enquete.id WHERE favorite.username = '" + username + "'");
+			ResultSet rs = stmt.executeQuery("SELECT enquete.id, enquete.name FROM favorite INNER JOIN enquete ON favorite.enquete_id = enquete.id WHERE favorite.username = '" + username + "' AND enquete.id NOT IN(SELECT enquete_id FROM finished WHERE username = '" + username + "')");
 			while (rs.next()) {
 				favorites.add(new Enquete(rs.getInt(1), rs.getString(2)));
 			}
