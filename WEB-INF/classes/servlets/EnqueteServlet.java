@@ -25,14 +25,22 @@ public class EnqueteServlet extends HttpServlet
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 	throws ServletException, IOException
 	{
+		String user = req.getUserPrincipal().getName();
+
 		if (req.getParameter("id") == null) {
 			resp.sendRedirect("/final/home");
 			return;
 		}
 		int id = Integer.parseInt(req.getParameter("id"));
-		String user = req.getUserPrincipal().getName();
 		Enquete enquete = this.enqueteService.getEnqueteById(id);
+
+		int q = 0;
+		if (req.getParameter("q") != null) {
+			q = Integer.parseInt(req.getParameter("q"));
+		}
+
 		req.setAttribute("enquete", enquete);
+		req.setAttribute("question", q);
 		getServletContext().getRequestDispatcher("/WEB-INF/pages/enquete.jsp").forward(req, resp);
 	}
 
