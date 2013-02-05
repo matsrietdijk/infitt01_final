@@ -4,17 +4,18 @@ import java.util.List;
 import java.util.ArrayList;
 
 import model.Enquete;
+import model.Choice;
 
 public class Question {
 	private int id;
 	private int type;
 	private Enquete enquete;
 	private String question;
-	private String[] answers;
+	private List<Choice> choices;
 
 	public Question()
 	{
-		this.answers = new String[4];
+		this.choices = new ArrayList<Choice>();
 	}
 	public Question(int id, int type, Enquete enquete, String question)
 	{
@@ -22,7 +23,7 @@ public class Question {
 		this.type = type;
 		this.enquete = enquete;
 		this.question = question;
-		this.answers = new String[4];
+		this.choices = new ArrayList<Choice>();
 	}
 
 	public Question setId(int id)
@@ -65,13 +66,13 @@ public class Question {
 		return this.question;
 	}
 
-	public Question setAnswer(String[] answers)
+	public Question addChoice(Choice choice)
 	{
-		this.answers = answers;
+		this.choices.add(choice);
 		return this;
 	}
-	public String[] getAnswers()
+	public List<Choice> getChoices()
 	{
-		return this.answers;
+		return this.choices;
 	}
 }
