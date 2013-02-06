@@ -21,11 +21,13 @@
                 <a class="block button" href="https://github.com/matsrietdijk/infitt01_final" target="_blank">Check repo on Github <i class="icon-github-alt"></i></a>
               </div>
             </div>
-            <div class="row">
-              <div class="three small-tablet sevenths gap-top pad-right no-padding-mobile">
-                <a class="block button" href="/final/admin" target="_blank">Admin</a>
+            <c:if test="${pageContext.request.isUserInRole(\"admin\") == true}">
+              <div class="row">
+                <div class="three small-tablet sevenths gap-top pad-right no-padding-mobile">
+                  <a class="block button" href="/final/admin">Admin</a>
+                </div>
               </div>
-            </div>
+            </c:if>
           </div>
           <div class="two thirds padded align-center">
            <img src="http://www.norea.nl/readfile.aspx?ContentID=73038&ObjectID=1015406&Type=1&File=0000038485_ENQUETE.jpg" alt="Groundwork CSS - A Responsive Design Framework" class="glow double gap-top" style="margin-bottom:-42px;">
