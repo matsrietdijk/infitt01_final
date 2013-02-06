@@ -41,9 +41,12 @@ Neem de volgende code over in "$CATALINA_HOME/conf/tomcat-users.xml" binnen het 
 
 Stap 7:
 Neem "final.war" uit de map "TOMCAT" en plaats deze in "$CATALINA_HOME/webapps/"
+Als "final.war" niet in deze map staat voer je de volgende code uit vanuit de route van dit project:
+
+	jar cvf final.war WEB-INF/* login.html login-failed.html groundwork/*
 
 Stap 8:
-Herstart je tomcat door middel van het volgnde commando's:
+Herstart je tomcat door middel van het volgende commando's:
 
 	sh $CATALINA_HOME/bin/shutdown.sh
 
