@@ -33,12 +33,13 @@
       <article>
         <div class="space gap-top"></div>
         <section class="row">
+          <div class="row button-insertion"></div>
           <form action="/final/admin" method="post">
             <input type="hidden" name="e_index" value="${requestScope.enquete_id}">
             <fieldset>
               <legend>Add questions</legend>
               <div class="row">
-                <div class="one whole padded">
+                <div class="one half padded">
                   <label for="text">Vraag</label>
                   <input type="text" name="q_question" />
                 </div>
@@ -47,9 +48,9 @@
                 <div class="one whole padded">
                   <label for="things">Soort vraag</label>
                   <ul class="radio-list rbl">
-                    <li><label><input type="radio" name="q_type" required value="0" />Multiple Choice</label></li>
-                    <li><label><input type="radio" name="q_type" required value="1" />Open</label></li>
-                    <li><label><input type="radio" name="q_type" required value="2" />Waardering</label></li>
+                    <li><label><input class="listener" type="radio" name="q_type" required value="0" />Multiple Choice</label></li>
+                    <li><label><input class="listener" type="radio" name="q_type" required value="1" />Open</label></li>
+                    <li><label><input class="listener" type="radio" name="q_type" required value="2" />Waardering</label></li>
                   </ul>
                 </div>
                 <div class="row">
@@ -72,24 +73,28 @@
     </div>
     <footer>
       <script>
-        $(document).ready(
-          function checkform() {
-            if($('input:radio[name=radio]:checked').val() == "0") {
-              $('insertion').html("");
-              var html = '<ul class="radio-list-choices"><li><input type="text" name="c_value" placeholder="Keuze" /></li></ul><br /><button class="addmore">Voeg toe</button>';
-              $('insertion').append(html);
-            } else if ($('input:radio[name=radio]:checked').val() == "1") {
-              $('insertion').html("");
+        $(document).ready(function() {
+          $(".listener").change(function () {
+            var checked_value = $(".listener:checked").val();
+            if(checked_value == "0") {
+              $('.insertion').html("");
+              var html = '<ul class="radio-list-choices"><li><input type="text" name="c_value" placeholder="Keuze" /></li></ul>';
+              $('.insertion').append(html);
+              html = '<button><div class="addmore">Voeg nog een keuze toe</div></button>';
+              $('.button-insertion').append(html);
+            } else if (checked_value == "1") {
+              $('.insertion').html("");
+              $('.button-insertion').html("");
             } else {
-              $('insertion').html("");
+              $('.insertion').html("");
+              $('.button-insertion').html("");
             }
-        });
+          });
 
-        $(document).ready(
-          function checkMultiple() {
-            $('addmore').click(function() {
-              var html = '<li><input type="text" name="q_value" placeholder="Antwoord" /></li>';
-              $('radio-list-choices').append(html);
+          $('.addmore').click(function() {
+            alert('hi');
+            var html = '<li><input type="text" name="q_value" placeholder="Antwoord" /></li>';
+            $('.radio-list-choices').append(html);
           });
         });
       </script>
