@@ -37,7 +37,6 @@
 <c:forEach items="${requestScope.favorites}" var="enquete">
 <div class="one third padded">
 <a href="/final/removefavo?id=${enquete.id}">
-<div class="large circle"><div class="blue-3 cell"><i class="icon-remove-sign"></i></div></div>
 <h1 class="align-center"><c:out value="${enquete.name}"/></h1>
 </a>
 </div>
@@ -50,7 +49,6 @@
 <c:forEach items="${requestScope.enquetes}" var="enquete">
 <div class="one third padded">
 <a href="/final/addfavo?id=${enquete.id}">
-<div class="large circle"><div class="blue-3 cell"><i class="icon-plus-sign-alt"></i></div></div>
 <h1 class="align-center"><c:out value="${enquete.name}"/></h1>
 </a>
 </div>
