@@ -12,6 +12,7 @@
         <div class="row">
           <div class="one third padded align-center">
             <h1 class="responsive" data-scale="3.825" data-min="20" data-max="170" style="font-size: 99px;">Results</h1>
+            <h3 class="responsive" data-scale="13.6" data-min="15" data-max="50" style="font-size: 27px;"><a href="/final/home">Back to home</a></h3>
             <div class="row">
               <div class="three small-tablet sevenths gap-top pad-right no-padding-mobile">
                 <a class="block button" href="#" target="">INFITT01 <i class="icon-twitter"></i></a>
