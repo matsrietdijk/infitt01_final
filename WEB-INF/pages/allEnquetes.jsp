@@ -33,6 +33,7 @@
 <div class="space gap-top"></div>
 <section class="row">
 <h3>Favorite enquetes:</h3>
+<h3>Click enquetes to unfavorite</h3>
 <c:forEach items="${requestScope.favorites}" var="enquete">
 <div class="one third padded">
 <a href="/final/removefavo?id=${enquete.id}">
@@ -45,6 +46,7 @@
 </hr>
 <section class="row">
 <h3>All enquetes:</h3>
+<h3>Click enquetes to favorite</h3>
 <c:forEach items="${requestScope.enquetes}" var="enquete">
 <div class="one third padded">
 <a href="/final/addfavo?id=${enquete.id}">
