@@ -5,7 +5,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/groundwork/css/groundwork.css" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/groundwork/css/groundy.css" />
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/groundwork/js/libs/jquery-1.8.2.min.js"></script>
   </head>
   <body>
     <div class="hero band lt-blue invert-color tripple padded">
