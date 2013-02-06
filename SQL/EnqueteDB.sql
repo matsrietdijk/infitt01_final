@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 06, 2013 at 04:30 AM
+-- Generation Time: Feb 06, 2013 at 04:57 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.6-1ubuntu1.1
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `answer` varchar(255) NOT NULL,
   `extra` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 -- --------------------------------------------------------
 
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `choice` (
   `question_id` int(11) NOT NULL,
   `choice` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `choice`
@@ -56,7 +56,11 @@ CREATE TABLE IF NOT EXISTS `choice` (
 
 INSERT INTO `choice` (`id`, `question_id`, `choice`) VALUES
 (1, 1, 'Dit is het eerste antwoord'),
-(2, 1, '2de antwoord van de eerste vraag');
+(2, 1, '2de antwoord van de eerste vraag'),
+(3, 7, 'Java'),
+(4, 7, 'PHP'),
+(5, 7, 'C++'),
+(6, 7, 'Ruby');
 
 -- --------------------------------------------------------
 
@@ -68,14 +72,15 @@ CREATE TABLE IF NOT EXISTS `enquete` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `enquete`
 --
 
 INSERT INTO `enquete` (`id`, `name`) VALUES
-(1, 'Eerste enquete op de site');
+(1, 'Eerste enquete op de site'),
+(2, 'Programmeren en Java');
 
 -- --------------------------------------------------------
 
@@ -88,14 +93,15 @@ CREATE TABLE IF NOT EXISTS `favorite` (
   `username` varchar(255) NOT NULL,
   `enquete_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `favorite`
 --
 
 INSERT INTO `favorite` (`id`, `username`, `enquete_id`) VALUES
-(9, 'admin', 1);
+(9, 'admin', 1),
+(10, 'admin', 2);
 
 -- --------------------------------------------------------
 
@@ -108,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `finished` (
   `username` varchar(255) NOT NULL,
   `enquete_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -122,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `enquete_id` int(11) NOT NULL,
   `question` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `question`
@@ -131,7 +137,11 @@ CREATE TABLE IF NOT EXISTS `question` (
 INSERT INTO `question` (`id`, `type`, `enquete_id`, `question`) VALUES
 (1, 0, 1, 'Wat zal de eerste vraag zijn?'),
 (2, 1, 1, 'Werkt het?'),
-(3, 2, 1, 'Hoe goed bevalt deze site op een schaal van 1 tot 5?');
+(3, 2, 1, 'Hoe goed bevalt deze site op een schaal van 1 tot 5?'),
+(4, 0, 0, ''),
+(5, 1, 2, 'Waarvoor gebruikt u uw programmeer vaardigheden gewoonlijks?'),
+(6, 2, 2, 'Op een schaal van 1 tot 5 hoe gevorderd bent u met Java?'),
+(7, 0, 2, 'Welke programmeertaal gebruikt u het meest voor het ontwikkelen van websites?');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

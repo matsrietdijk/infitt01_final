@@ -43,7 +43,7 @@ public class EnqueteServlet extends HttpServlet
 			q = this.enqueteService.getIndexOfStartQuestion(user, id);
 		}
 
-		String old = this.enqueteService.getOldGivenAnswer(user, enquete.getId(), (q + 1));
+		String old = this.enqueteService.getOldGivenAnswer(user, enquete.getId(), enquete.getQuestion(q).getId());
 
 		req.setAttribute("enquete", enquete);
 		req.setAttribute("question", q);
@@ -87,8 +87,8 @@ public class EnqueteServlet extends HttpServlet
 			return;
 		}
 
-		String old = this.enqueteService.getOldGivenAnswer(user, enquete.getId(), (q + 1));
-		
+		String old = this.enqueteService.getOldGivenAnswer(user, enquete.getId(), enquete.getQuestion(q).getId());
+
 		req.setAttribute("enquete", enquete);
 		req.setAttribute("question", q);
 		req.setAttribute("old", old);
