@@ -56,13 +56,13 @@ public class AdminServlet extends HttpServlet
 			question.setQuestion(req.getParameter("q_question"));
 			question.setType(Integer.parseInt(req.getParameter("q_type")));
 			int id = enqueteService.createQuestion(question);
-
+			question.setId(id);
 			if(Integer.parseInt(req.getParameter("q_type")) == 0) {
 				String[] c_values = req.getParameterValues("c_value");
-				for(String c_value : c_values) {
+				for(int i = 0; i < c_values.length; i++) {
 					Choice choice = new Choice();
 					choice.setQuestion(question);
-					choice.setChoice(c_value);
+					choice.setChoice(c_values[i]);
 					enqueteService.createChoice(choice);
 				}
 			}

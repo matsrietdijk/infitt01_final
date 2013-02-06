@@ -82,6 +82,7 @@
               $('.insertion').append(html);
               html = '<button><div class="addmore">Voeg nog een keuze toe</div></button>';
               $('.button-insertion').append(html);
+              reloadFunctions();
             } else if (checked_value == "1") {
               $('.insertion').html("");
               $('.button-insertion').html("");
@@ -90,13 +91,15 @@
               $('.button-insertion').html("");
             }
           });
-
+          reloadFunctions();
+        });
+        
+        function reloadFunctions() {
           $('.addmore').click(function() {
-            alert('hi');
-            var html = '<li><input type="text" name="q_value" placeholder="Antwoord" /></li>';
+            var html = '<li><input type="text" name="c_value" placeholder="Keuze" /></li>';
             $('.radio-list-choices').append(html);
           });
-        });
+        }
       </script>
     </footer>
   </body>
