@@ -10,6 +10,7 @@ import javax.sql.*;
 import model.Enquete;
 import model.Question;
 import model.Choice;
+import model.Answer;
 
 public class EnqueteService {
 	private List<Enquete> enquetes;
@@ -185,7 +186,7 @@ public class EnqueteService {
 		return true;
 	}
 
-	public int getIndexOfLatestQuestion(String user, int id)
+	public int getIndexOfStartQuestion(String user, int id)
 	{
 		int index = 0;
 		try {
@@ -208,5 +209,83 @@ public class EnqueteService {
 			System.out.println("Fout in sql! "+ sql);
 		}
 		return index;
+	}
+
+	public boolean saveAnswer(Answer answer)
+	{
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet srs = stmt.executeQuery("SELECT id FROM answer WHERE username = '" + answer.getUsername() + "' AND enquete_id = " + answer.getEnquete().getId() + " AND question_id = " + answer.getQuestion().getId());
+			if (srs.next()) {
+				int id = srs.getInt(1);
+				srs.close();
+				stmt.executeUpdate("UPDATE answer SET answer = '" + answer.getAnswer() + "', extra = '" + answer.getExtra() + "' WHERE id = " + id);
+			} else {
+				srs.close();
+				stmt.executeUpdate("INSERT INTO answer(question_id, enquete_id, answer.index, username, answer, extra) VALUES(" + answer.getQuestion().getId() + "," + answer.getEnquete().getId() + "," + answer.getIndex() + ",'" + answer.getUsername() + "','" + answer.getAnswer() + "','" + answer.getExtra() + "')");
+			}
+			stmt.close();
+			conn.close();
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+			return false;
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+			return false;
+		}
+		return true;
+	}
+
+	public String getOldGivenAnswer(String username, int enquete_id, int question_id)
+	{
+		String answer = "";
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement stmt = conn.createStatement();
+
+			ResultSet rs = stmt.executeQuery("SELECT answer.answer FROM answer WHERE answer.username = '" + username + "' AND answer.enquete_id = " + enquete_id + " AND answer.question_id = " + question_id);
+			if (rs.next()) {
+				answer = rs.getString(1);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+		}
+		return answer;
+	}
+
+	public boolean finishEnquete(String username, int enquete_id)
+	{
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet srs = stmt.executeQuery("SELECT * FROM finished WHERE username = '" + username + "' AND enquete_id = " + enquete_id);
+			if (srs.next()) {
+				srs.close();
+			} else {
+				srs.close();
+				stmt.executeUpdate("INSERT INTO finished(username, enquete_id) VALUES('" + username + "'," + enquete_id + ")");
+			}
+			stmt.close();
+			conn.close();
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+			return false;
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+			return false;
+		}
+		return true;
 	}
 }
