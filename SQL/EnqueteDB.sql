@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 06, 2013 at 04:57 AM
+-- Generation Time: Feb 06, 2013 at 10:07 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.6-1ubuntu1.1
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `answer` (
   `answer` varchar(255) NOT NULL,
   `extra` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `favorite` (
   `username` varchar(255) NOT NULL,
   `enquete_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `favorite`
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `favorite` (
 
 INSERT INTO `favorite` (`id`, `username`, `enquete_id`) VALUES
 (9, 'admin', 1),
-(10, 'admin', 2);
+(11, 'user', 1);
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `finished` (
   `username` varchar(255) NOT NULL,
   `enquete_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 

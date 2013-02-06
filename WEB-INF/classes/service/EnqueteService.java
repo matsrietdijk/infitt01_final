@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.sql.*;
 
@@ -11,6 +12,7 @@ import model.Enquete;
 import model.Question;
 import model.Choice;
 import model.Answer;
+import model.ResultHolder;
 
 public class EnqueteService {
 	private List<Enquete> enquetes;
@@ -287,5 +289,94 @@ public class EnqueteService {
 			return false;
 		}
 		return true;
+	}
+
+	public List<Enquete> getFinishedByUser(String username)
+	{
+		List<Enquete> finished = new ArrayList<Enquete>();
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement stmt = conn.createStatement();
+
+			ResultSet rs = stmt.executeQuery("SELECT enquete.id, enquete.name FROM finished INNER JOIN enquete ON finished.enquete_id = enquete.id WHERE finished.username = '" + username + "' ORDER BY enquete.id");
+			while (rs.next()) {
+				finished.add(new Enquete(rs.getInt(1), rs.getString(2)));
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+		}
+		return finished;
+	}
+
+	public List<ResultHolder> getResultsForEnquete(Enquete enquete)
+	{
+		List<ResultHolder> results = new ArrayList<ResultHolder>();
+		List<Question> questions = enquete.getQuestions();
+
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement stmt = conn.createStatement();
+
+			for (Question q : questions) {
+				if (q.getType() == 0) {
+					ResultHolder holder = new ResultHolder();
+					holder.setQuestion(q.getQuestion());
+					holder.setType(0);
+
+					List<Choice> choices = q.getChoices();
+					int last_id = choices.get(choices.size() -1).getId();
+
+					ResultSet rs = stmt.executeQuery("SELECT answer FROM answer WHERE question_id = " + q.getId() + " AND enquete_id = " + enquete.getId() + " AND username IN(SELECT username FROM finished WHERE enquete_id = " + enquete.getId() + ")");
+					int[] total = new int[(last_id + 1)];
+					Arrays.fill(total, 0);
+					int count = 0;
+					while (rs.next()) {
+						total[rs.getInt(1)] += 1;
+						count++;
+					}
+					rs.close();
+					String percentage = "";
+					for (Choice c : choices) {
+						percentage += (((double) ((double) total[c.getId()] / count)) * 100) + "% " + c.getChoice() + " ";
+					}
+					holder.setPercentage(percentage);
+					results.add(holder);
+				}
+				if (q.getType() == 2) {
+					ResultHolder holder = new ResultHolder();
+					holder.setQuestion(q.getQuestion());
+					holder.setType(2);
+
+					ResultSet rs = stmt.executeQuery("SELECT answer FROM answer WHERE question_id = " + q.getId() + " AND enquete_id = " + enquete.getId() + " AND username IN(SELECT username FROM finished WHERE enquete_id = " + enquete.getId() + ")");
+					int total = 0;
+					int count = 0;
+					while (rs.next()) {
+						total += rs.getInt(1);
+						count++;
+					}
+					rs.close();
+					double average = (double) (total / count);
+					holder.setAverage(average);
+					results.add(holder);
+				}
+			}
+
+			stmt.close();
+			conn.close();
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+		}
+		return results;
 	}
 }

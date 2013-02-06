@@ -27,12 +27,18 @@ public class HomeServlet extends HttpServlet
 	{
 		List<Enquete> favorites = this.enqueteService.getFavoritesByUser(req.getUserPrincipal().getName());
 		req.setAttribute("favorites", favorites);
+		List<Enquete> finished = this.enqueteService.getFinishedByUser(req.getUserPrincipal().getName());
+		req.setAttribute("finished", finished);
 		getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 	throws ServletException, IOException
 	{
+		List<Enquete> favorites = this.enqueteService.getFavoritesByUser(req.getUserPrincipal().getName());
+		req.setAttribute("favorites", favorites);
+		List<Enquete> finished = this.enqueteService.getFinishedByUser(req.getUserPrincipal().getName());
+		req.setAttribute("finished", finished);
 		getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
 	}
 }
