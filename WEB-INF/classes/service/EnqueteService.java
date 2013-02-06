@@ -184,4 +184,29 @@ public class EnqueteService {
 		}
 		return true;
 	}
+
+	public int getIndexOfLatestQuestion(String user, int id)
+	{
+		int index = 0;
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement stmt = conn.createStatement();
+
+			ResultSet rs = stmt.executeQuery("SELECT answer.index FROM answer WHERE answer.username = '" + user + "' AND answer.enquete_id = " + id + " ORDER BY answer.index DESC");
+			if (rs.next()) {
+				System.out.println(rs.getInt(1));
+				index = rs.getInt(1) + 1;
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+		}
+		return index;
+	}
 }

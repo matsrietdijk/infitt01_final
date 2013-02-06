@@ -35,11 +35,10 @@
 <h3>Favorite enquetes:</h3>
 <c:forEach items="${requestScope.favorites}" var="enquete">
 <div class="one third padded">
-<a href="./sass-compass">
+<a href="/final/enquete?id=${enquete.id}">
 <div class="large circle"><div class="blue-3 cell"><i class="icon-plus-sign-alt"></i></div></div>
 <h1 class="align-center"><c:out value="${enquete.name}"/></h1>
 </a>
-<p class="pad-left pad-right">Iets.</p>
 </div>
 </c:forEach>        
 </section>

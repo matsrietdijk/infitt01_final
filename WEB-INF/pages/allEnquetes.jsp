@@ -39,7 +39,6 @@
 <div class="large circle"><div class="blue-3 cell"><i class="icon-plus-sign-alt"></i></div></div>
 <h1 class="align-center"><c:out value="${enquete.name}"/></h1>
 </a>
-<p class="pad-left pad-right">Iets.</p>
 </div>
 </c:forEach>        
 </section>
@@ -52,7 +51,6 @@
 <div class="large circle"><div class="blue-3 cell"><i class="icon-plus-sign-alt"></i></div></div>
 <h1 class="align-center"><c:out value="${enquete.name}"/></h1>
 </a>
-<p class="pad-left pad-right">Beschrijving.</p>
 </div>
 </c:forEach> 
 </section>

@@ -9,20 +9,24 @@ public class Answer {
 	private int id;
 	private Question question;
 	private Enquete enquete;
+	private int index;
 	private String username;
 	private String answer;
+	private String extra;
 
 	public Answer()
 	{
 
 	}
-	public Answer(int id, Question question, Enquete enquete, String username, String answer)
+	public Answer(int id, Question question, Enquete enquete, String username, int index, String answer, String extra)
 	{
 		this.id = id;
 		this.question = question;
 		this.enquete = enquete;
+		this.index = index;
 		this.username = username;
-		this.answer = answer;		
+		this.answer = answer;
+		this.extra = extra;	
 	}
 
 	public Answer setId(int id)
@@ -55,6 +59,16 @@ public class Answer {
 		return this.enquete;
 	}
 
+	public Answer setIndex(int index)
+	{
+		this.index = index;
+		return this;
+	}
+	public int getIndex()
+	{
+		return this.index;
+	}
+
 	public Answer setUsername(String username)
 	{
 		this.username = username;
@@ -73,5 +87,15 @@ public class Answer {
 	public String getAnswer()
 	{
 		return this.answer;
+	}
+
+	public Answer setExtra(String extra)
+	{
+		this.extra = extra;
+		return this;
+	}
+	public String getExtra()
+	{
+		return this.extra;
 	}
 }

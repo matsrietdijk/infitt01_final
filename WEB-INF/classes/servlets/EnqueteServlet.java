@@ -37,8 +37,10 @@ public class EnqueteServlet extends HttpServlet
 		int q = 0;
 		if (req.getParameter("q") != null) {
 			q = Integer.parseInt(req.getParameter("q"));
+		} else {
+			q = this.enqueteService.getIndexOfLatestQuestion(user, id);
 		}
-
+		System.out.println("TEST " + q);
 		req.setAttribute("enquete", enquete);
 		req.setAttribute("question", q);
 		getServletContext().getRequestDispatcher("/WEB-INF/pages/enquete.jsp").forward(req, resp);
@@ -47,6 +49,24 @@ public class EnqueteServlet extends HttpServlet
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 	throws ServletException, IOException
 	{
-		getServletContext().getRequestDispatcher("/WEB-INF/pages/home.jsp").forward(req, resp);
+		String user = req.getUserPrincipal().getName();
+
+		if (req.getParameter("id") == null) {
+			resp.sendRedirect("/final/home");
+			return;
+		}
+		int id = Integer.parseInt(req.getParameter("id"));
+		Enquete enquete = this.enqueteService.getEnqueteById(id);
+
+		int q = 0;
+		if (req.getParameter("q") != null) {
+			q = Integer.parseInt(req.getParameter("q"));
+		} else {
+			q = this.enqueteService.getIndexOfLatestQuestion(user, id);
+		}
+
+		req.setAttribute("enquete", enquete);
+		req.setAttribute("question", q);
+		getServletContext().getRequestDispatcher("/WEB-INF/pages/enquete.jsp").forward(req, resp);
 	}
 }
