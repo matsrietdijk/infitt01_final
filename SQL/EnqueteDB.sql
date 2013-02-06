@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 05, 2013 at 09:38 PM
+-- Generation Time: Feb 06, 2013 at 04:30 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.6-1ubuntu1.1
 
@@ -19,6 +19,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `EnqueteDB`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answer`
+--
+
+CREATE TABLE IF NOT EXISTS `answer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question_id` int(11) NOT NULL,
+  `enquete_id` int(11) NOT NULL,
+  `index` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `answer` varchar(255) NOT NULL,
+  `extra` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -71,14 +88,14 @@ CREATE TABLE IF NOT EXISTS `favorite` (
   `username` varchar(255) NOT NULL,
   `enquete_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `favorite`
 --
 
 INSERT INTO `favorite` (`id`, `username`, `enquete_id`) VALUES
-(1, 'admin', 1);
+(9, 'admin', 1);
 
 -- --------------------------------------------------------
 
@@ -91,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `finished` (
   `username` varchar(255) NOT NULL,
   `enquete_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -105,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `question` (
   `enquete_id` int(11) NOT NULL,
   `question` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `question`
@@ -113,7 +130,8 @@ CREATE TABLE IF NOT EXISTS `question` (
 
 INSERT INTO `question` (`id`, `type`, `enquete_id`, `question`) VALUES
 (1, 0, 1, 'Wat zal de eerste vraag zijn?'),
-(2, 1, 1, 'Werkt het?');
+(2, 1, 1, 'Werkt het?'),
+(3, 2, 1, 'Hoe goed bevalt deze site op een schaal van 1 tot 5?');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
