@@ -22,6 +22,84 @@ public class EnqueteService {
 		this.enquetes = new ArrayList<Enquete>();
 	}
 
+	public int createEnquete(String name) {
+		int id = 0;
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement estmt = conn.createStatement();
+
+			ResultSet ers = estmt.executeQuery("INSERT INTO enquete(name) VALUES('" + name + "')");
+			ResultSet ids = estmt.getGeneratedKeys();
+			while (ids.next()) {
+				id = ids.getInt(1);
+			}
+			ids.close();
+			ers.close();
+			estmt.close();
+			conn.close();
+
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+		}
+		return id;
+	}
+
+	public int createQuestion(Question question) {
+		int id = 0;
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement estmt = conn.createStatement();
+
+			ResultSet ers = estmt.executeQuery("INSERT INTO question(type, question, enquete_id) VALUES('" + question.getType() + "', '" + question.getQuestion() + "', '" + question.getEnquete().getId() + "')");
+			ResultSet ids = estmt.getGeneratedKeys();
+			while (ids.next()) {
+				id = ids.getInt(1);
+			}
+			ids.close();
+			ers.close();
+			estmt.close();
+			conn.close();
+
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+		}
+		return id;
+	}
+
+	public int createChoice(Choice choice) {
+		int id = 0;
+		try {
+			Context initContext = new InitialContext();
+			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/EnqueteDB");
+			Connection conn = ds.getConnection();
+			Statement estmt = conn.createStatement();
+
+			ResultSet ers = estmt.executeQuery("INSERT INTO choice(question_id, choice) VALUES('" + choice.getQuestion().getId() + "', '" + choice.getChoice() + "')");
+			ResultSet ids = estmt.getGeneratedKeys();
+			while (ids.next()) {
+				id = ids.getInt(1);
+			}
+			ids.close();
+			ers.close();
+			estmt.close();
+			conn.close();
+
+		} catch (NamingException ne) {
+			System.out.println("Datasource niet gevonden! "+ne);
+		} catch (SQLException sql) {
+			System.out.println("Fout in sql! "+ sql);
+		}
+		return id;
+	}
+
 	public List<Enquete> getAllEnquetes()
 	{
 		if (this.enquetes.isEmpty()) {

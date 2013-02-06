@@ -83,6 +83,16 @@
     <url-pattern>/result</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>servlets.AdminServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
+
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Wildcard means whole app requires authentication</web-resource-name>
