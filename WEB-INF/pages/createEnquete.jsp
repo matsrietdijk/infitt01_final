@@ -33,7 +33,7 @@
       <article>
         <div class="space gap-top"></div>
         <section class="row">
-        	<form action="/final/admin/" method="post">
+        	<form action="/final/admin" method="post">
         		<fieldset>
         			<div class="row">
         				<div class="one third padded">

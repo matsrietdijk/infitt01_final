@@ -30,13 +30,12 @@ public class EnqueteService {
 			Connection conn = ds.getConnection();
 			Statement estmt = conn.createStatement();
 
-			ResultSet ers = estmt.executeUpdate("INSERT INTO enquete(name) VALUES('" + name + "')");
+			estmt.executeUpdate("INSERT INTO enquete(name) VALUES('" + name + "')");
 			ResultSet ids = estmt.getGeneratedKeys();
 			while (ids.next()) {
 				id = ids.getInt(1);
 			}
 			ids.close();
-			ers.close();
 			estmt.close();
 			conn.close();
 
@@ -56,13 +55,12 @@ public class EnqueteService {
 			Connection conn = ds.getConnection();
 			Statement estmt = conn.createStatement();
 
-			ResultSet ers = estmt.executeUpdate("INSERT INTO question(type, question, enquete_id) VALUES('" + question.getType() + "', '" + question.getQuestion() + "', '" + question.getEnquete().getId() + "')");
+			estmt.executeUpdate("INSERT INTO question(type, question, enquete_id) VALUES('" + question.getType() + "', '" + question.getQuestion() + "', '" + question.getEnquete().getId() + "')");
 			ResultSet ids = estmt.getGeneratedKeys();
 			while (ids.next()) {
 				id = ids.getInt(1);
 			}
 			ids.close();
-			ers.close();
 			estmt.close();
 			conn.close();
 
@@ -82,13 +80,12 @@ public class EnqueteService {
 			Connection conn = ds.getConnection();
 			Statement estmt = conn.createStatement();
 
-			ResultSet ers = estmt.executeUpdate("INSERT INTO choice(question_id, choice) VALUES('" + choice.getQuestion().getId() + "', '" + choice.getChoice() + "')");
+			estmt.executeUpdate("INSERT INTO choice(question_id, choice) VALUES('" + choice.getQuestion().getId() + "', '" + choice.getChoice() + "')");
 			ResultSet ids = estmt.getGeneratedKeys();
 			while (ids.next()) {
 				id = ids.getInt(1);
 			}
 			ids.close();
-			ers.close();
 			estmt.close();
 			conn.close();
 

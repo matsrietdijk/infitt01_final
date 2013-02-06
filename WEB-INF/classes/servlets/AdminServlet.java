@@ -69,6 +69,6 @@ public class AdminServlet extends HttpServlet
 			getServletContext().getRequestDispatcher("/WEB-INF/pages/createQuestion.jsp").forward(req, resp);
 			return;
 		}
-		resp.sendRedirect("/final/all/");
+		resp.sendRedirect("/final/all");
 	}
 }

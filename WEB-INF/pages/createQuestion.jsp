@@ -33,7 +33,7 @@
       <article>
         <div class="space gap-top"></div>
         <section class="row">
-          <form action="/final/admin/" method="post">
+          <form action="/final/admin" method="post">
             <input type="hidden" name="e_index" value="${requestScope.enquete_id}">
             <fieldset>
               <legend>Add questions</legend>
