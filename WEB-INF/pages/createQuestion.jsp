@@ -59,7 +59,7 @@
               </div>
               <div class="row">
                 <div class="one third padded">
-                  <input class="block button" type="submit" value="Verstuur en maak nog een aan" />
+                  <input class="block button" type="submit" value="Verstuur en maak nog een vraag aan" />
                 </div>
                 <div class="one third padded">
                   <a class="block button" href="/final/home"><i class="icon-arrow-left"></i> Stoppen</a>

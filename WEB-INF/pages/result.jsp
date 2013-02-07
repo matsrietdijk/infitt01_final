@@ -42,11 +42,7 @@
 							<div class="one third padded">
 								<c:if test="${result.type == 0}">
                   <h4><c:out value="${result.question}"/></h4>
-                  <table>
-                    <tr>
-                      <td><c:out value="${result.percentage}"/></td>
-                    </tr>
-                  </table>
+                  <p><c:out value="${result.percentage}"/></p>
 								</c:if>
 								<c:if test="${result.type == 2}">
 									<h4><c:out value="${result.question}"/></h4>

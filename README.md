@@ -18,6 +18,14 @@ Neem "mysql-connector-java-5.1.3.jar" uit de map "TOMCAT" en plaats deze in "$CA
 
 Stap 4:
 Neem "EnqueteDB.sql" uit de map "SQL" en importeer deze in je mysql database, gebruik als database name EnqueteDB.
+Dit kun je doen met de volgende commando's in de terminal:
+
+    mysql -u [MySQL USER] -p
+    create database EnqueteDB;
+    exit;
+    mysql -u [MySQL USER] -p EnqueteDB < EnqueteDB.sql
+
+    * voer deze commando's uit in de "SQL" map
 
 Stap 5:
 Neem de volgende code over in "$CATALINA_HOME/conf/context.xml" binnen het "Context"-element en verander de plaatshouders:
