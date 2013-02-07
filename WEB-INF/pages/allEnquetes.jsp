@@ -12,13 +12,17 @@
 <div class="row">
 <div class="one third padded align-center">
 <h1 class="responsive" data-scale="3.825" data-min="20" data-max="170" style="font-size: 99px;">Enquetes</h1>
-<h3 class="responsive" data-scale="13.6" data-min="15" data-max="50" style="font-size: 27px;"><a href="/final/home">Back to home</a></h3>
 <div class="row">
 <div class="three small-tablet sevenths gap-top pad-right no-padding-mobile">
 <a class="block button" href="#" target="_blank">INFITT01 <i class="icon-twitter"></i></a>
 </div>
 <div class="four small-tablet sevenths gap-top">
 <a class="block button" href="https://github.com/matsrietdijk/infitt01_final" target="_blank">Check repo on Github <i class="icon-github-alt"></i></a>
+</div>
+<div class="row">
+<div class="three small-tablet sevenths gap-top pad-right no-padding-mobile">
+<a class="block button" href="/final/home">Home</a>
+</div>
 </div>
 </div>
 </div>
@@ -32,24 +36,24 @@
 <article>
 <div class="space gap-top"></div>
 <section class="row">
-<h3>Favorite enquetes:</h3>
-<h3>Click enquetes to unfavorite</h3>
+<h1>Favorite enquetes:</h1>
+<h2>Click enquetes to unfavorite</h2>
 <c:forEach items="${requestScope.favorites}" var="enquete">
 <div class="one third padded">
 <a href="/final/removefavo?id=${enquete.id}">
-<h1 class="align-center"><c:out value="${enquete.name}"/></h1>
+<h3 class="align-center"><c:out value="${enquete.name}"/></h3>
 </a>
 </div>
 </c:forEach>        
 </section>
 </hr>
 <section class="row">
-<h3>All enquetes:</h3>
-<h3>Click enquetes to favorite</h3>
+<h1>All enquetes:</h1>
+<h2>Click enquetes to favorite</h2>
 <c:forEach items="${requestScope.enquetes}" var="enquete">
 <div class="one third padded">
 <a href="/final/addfavo?id=${enquete.id}">
-<h1 class="align-center"><c:out value="${enquete.name}"/></h1>
+<h3 class="align-center"><c:out value="${enquete.name}"/></h3>
 </a>
 </div>
 </c:forEach> 

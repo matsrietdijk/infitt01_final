@@ -20,6 +20,11 @@
               <div class="four small-tablet sevenths gap-top">
                 <a class="block button" href="https://github.com/matsrietdijk/infitt01_final" target="_blank">Check repo on Github <i class="icon-github-alt"></i></a>
               </div>
+              <div class="row">
+                <div class="three small-tablet sevenths gap-top pad-right no-padding-mobile">
+                  <a class="block button" href="/final/all">Alle enquetes</a>
+                </div>
+              </div>
             </div>
             <c:if test="${pageContext.request.isUserInRole(\"admin\") == true}">
               <div class="row">

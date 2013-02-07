@@ -12,13 +12,17 @@
         <div class="row">
           <div class="one third padded align-center">
             <h1 class="responsive" data-scale="3.825" data-min="20" data-max="170" style="font-size: 99px;">Results</h1>
-            <h3 class="responsive" data-scale="13.6" data-min="15" data-max="50" style="font-size: 27px;"><a href="/final/home">Back to home</a></h3>
             <div class="row">
               <div class="three small-tablet sevenths gap-top pad-right no-padding-mobile">
                 <a class="block button" href="#" target="">INFITT01 <i class="icon-twitter"></i></a>
               </div>
               <div class="four small-tablet sevenths gap-top">
                 <a class="block button" href="https://github.com/matsrietdijk/infitt01_final" target="_blank">Check repo on Github <i class="icon-github-alt"></i></a>
+              </div>
+              <div class="row">
+                <div class="three small-tablet sevenths gap-top pad-right no-padding-mobile">
+                  <a class="block button" href="/final/home">Home</a>
+                </div>
               </div>
             </div>
           </div>
@@ -37,8 +41,12 @@
 						<div class="row">
 							<div class="one third padded">
 								<c:if test="${result.type == 0}">
-									<h4><c:out value="${result.question}"/></h4>
-									<p><c:out value="${result.percentage}"/></p>
+                  <h4><c:out value="${result.question}"/></h4>
+                  <table>
+                    <tr>
+                      <td><c:out value="${result.percentage}"/></td>
+                    </tr>
+                  </table>
 								</c:if>
 								<c:if test="${result.type == 2}">
 									<h4><c:out value="${result.question}"/></h4>

@@ -33,7 +33,6 @@
       <article>
         <div class="space gap-top"></div>
         <section class="row">
-          <div class="row button-insertion"></div>
           <form action="/final/admin" method="post">
             <input type="hidden" name="e_index" value="${requestScope.enquete_id}">
             <fieldset>
@@ -60,7 +59,7 @@
               </div>
               <div class="row">
                 <div class="one third padded">
-                  <input class="block button" type="submit" value="Verzend" />
+                  <input class="block button" type="submit" value="Verstuur en maak nog een aan" />
                 </div>
                 <div class="one third padded">
                   <a class="block button" href="/final/home"><i class="icon-arrow-left"></i> Stoppen</a>
@@ -78,24 +77,21 @@
             var checked_value = $(".listener:checked").val();
             if(checked_value == "0") {
               $('.insertion').html("");
-              var html = '<ul class="radio-list-choices"><li><input type="text" name="c_value" placeholder="Keuze" /></li></ul>';
+              var html = '<button><div class="addmore">Voeg nog een keuze toe</div></button><br /><ul class="radio-list-choices"><li><input type="text" name="c_value" placeholder="Keuze" /></li></ul>';
               $('.insertion').append(html);
-              html = '<button><div class="addmore">Voeg nog een keuze toe</div></button>';
-              $('.button-insertion').append(html);
               reloadFunctions();
             } else if (checked_value == "1") {
               $('.insertion').html("");
-              $('.button-insertion').html("");
             } else {
               $('.insertion').html("");
-              $('.button-insertion').html("");
             }
           });
           reloadFunctions();
         });
         
         function reloadFunctions() {
-          $('.addmore').click(function() {
+          $('.addmore').click(function(event) {
+            event.preventDefault();
             var html = '<li><input type="text" name="c_value" placeholder="Keuze" /></li>';
             $('.radio-list-choices').append(html);
           });
